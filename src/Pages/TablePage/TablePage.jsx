@@ -60,8 +60,6 @@ const TablePage = () => {
     const [loading, setLoading] = useState(true);
     const [likedPosts, setLikedPosts] = useState({});
 
-    const CACHE_EXPIRY_TIME = 86400000;
-
     useEffect(() => {
         const savedLikes = getDataFromCookies('likedPosts');
         if (savedLikes) {
@@ -86,25 +84,9 @@ const TablePage = () => {
 
     useEffect(() => {
         const cachedMemsData = getDataFromCookies('cachedMems');
-        const cachedTimestamp = getDataFromCookies('cachedMemsTimestamp');
 
-        const currentTime = new Date().getTime();
-        const isCacheValid = cachedMemsData && cachedTimestamp &&
-            (currentTime - cachedTimestamp < CACHE_EXPIRY_TIME);
-
-        if (isCacheValid) {
-            const needsUpdate = !cachedMemsData.some(item =>
-                'randomLikes' in item && 'isValidImage' in item
-            );
-
-            if (needsUpdate) {
-                const updatedData = generateRandomLikes(cachedMemsData);
-                setList(updatedData);
-                saveDataToCookies('cachedMems', updatedData);
-            } else {
-                setList(cachedMemsData);
-            }
-
+        if (cachedMemsData) {
+            setList(cachedMemsData);
             setLoading(false);
         } else {
             fetchMems();
@@ -120,7 +102,6 @@ const TablePage = () => {
             const processedPosts = generateRandomLikes(data);
 
             saveDataToCookies('cachedMems', processedPosts);
-            saveDataToCookies('cachedMemsTimestamp', new Date().getTime());
 
             setList(processedPosts);
             setLoading(false);

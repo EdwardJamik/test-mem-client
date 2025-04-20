@@ -30,7 +30,6 @@ const EditModal = () => {
             updatedMems[index] = modalData;
 
             saveDataToCookies('cachedMems', updatedMems);
-            saveDataToCookies('cachedMemsTimestamp', new Date().getTime());
         }
         closeModal();
     };
