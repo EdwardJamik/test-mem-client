@@ -148,7 +148,7 @@ const TablePage = () => {
     }, [likedPosts, handleLikeClick]);
 
     return (
-        <div className="max-w-screen-2xl mx-auto px-4 m-auto mt-10 mb-10">
+        <div className="max-w-screen-2xl mx-auto px-1 m-auto mt-10 mb-10">
             <Table aria-label="Table of memes">
                 <TableHeader columns={[
                     { name: "ID", uid: "id" },

@@ -58,9 +58,9 @@ const Header = () => {
                 {menuItems.map((item, index) => (
                     <NavbarMenuItem key={item.path}>
                         <Link
-                            className="w-full"
+                            className="w-full flex justify-center p-2.5"
                             href={item.path}
-                            size="lg"
+                            size="xl2"
                         >
                             {item.label}
                         </Link>
