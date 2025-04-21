@@ -123,7 +123,7 @@ const TablePage = () => {
                 );
             case "like":
                 return (
-                    <div className="m-auto max-w-21">
+                    <div className="m-auto max-w-20">
                         <LikeButton
                             postId={item.id}
                             likedPosts={likedPosts}
@@ -136,7 +136,7 @@ const TablePage = () => {
                 return (
                     <div className="relative flex items-center justify-center">
                         <Tooltip content="Edit">
-                            <Button onPress={()=>openModal(item)} className="w-10 h-10 p-0 min-w-0">
+                            <Button onPress={()=>openModal({id:item?.id, title: item.title, likedPosts, randomLikes: item.randomLikes})} className="w-14 h-10 p-0 min-w-0">
                                 <EditIcon />
                             </Button>
                         </Tooltip>
@@ -148,12 +148,12 @@ const TablePage = () => {
     }, [likedPosts, handleLikeClick]);
 
     return (
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-screen-2xl mx-auto px-4 m-auto mt-10 mb-10">
             <Table aria-label="Table of memes">
                 <TableHeader columns={[
-                    { name: "id", uid: "id" },
-                    { name: "Назва", uid: "title" },
-                    { name: "Лайки", uid: "like" },
+                    { name: "ID", uid: "id" },
+                    { name: "TITLE", uid: "title" },
+                    { name: "LIKE", uid: "like" },
                     { name: "ACTIONS", uid: "actions" },
                 ]}>
                     {(column) => (
@@ -167,7 +167,7 @@ const TablePage = () => {
                 </TableHeader>
                 <TableBody items={list} isLoading={loading} loadingContent="Завантаження...">
                     {(item) => (
-                        <TableRow key={item.id}>
+                        <TableRow key={item.id} className='border-b-1 last:border-b-0'>
                             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
                         </TableRow>
                     )}

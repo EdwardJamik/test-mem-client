@@ -23,9 +23,11 @@ export const HeartIcon = ({fill = "currentColor", filled, size, height, width, .
 };
 function LikeButton({ postId, likedPosts, onLikeClick, likesCount }) {
     return (
-        <div className="ml-auto flex items-center flex-col">
+        <div className="flex items-center min-w-20" onClick={() => {
+            onLikeClick(postId);
+        }}>
             <Button
-                className='m-auto'
+                className='bg-transparent z-0'
                 isIconOnly
                 aria-label="Like"
                 onClick={() => {
@@ -37,7 +39,8 @@ function LikeButton({ postId, likedPosts, onLikeClick, likesCount }) {
                     fill={likedPosts[postId] ? "#FF2D55" : "currentColor"}
                 />
             </Button>
-            <p className="ml-1">
+
+            <p className="text-sm">
                 {likesCount + (likedPosts[postId] ? 1 : 0)}
             </p>
         </div>

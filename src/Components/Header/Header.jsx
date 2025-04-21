@@ -27,7 +27,9 @@ const Header = () => {
         <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth='2xl'>
             <NavbarContent>
                 <NavbarBrand>
-                    <img width='50px' height='50px' src={Logo} alt="Logo"/>
+                    <Link href={'/'}>
+                        <img width='50px' height='50px' src={Logo} alt="Logo"/>
+                    </Link>
                 </NavbarBrand>
             </NavbarContent>
 
